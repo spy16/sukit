@@ -1,4 +1,5 @@
-// src/app.d.ts
+import 'unplugin-icons/types/svelte'
+
 import { SupabaseClient, Session } from '@supabase/supabase-js'
 
 declare global {
@@ -9,6 +10,7 @@ declare global {
 		}
 		interface PageData {
 			session: Session | null
+			supabase: SupabaseClient
 		}
 		// interface Error {}
 		// interface Platform {}

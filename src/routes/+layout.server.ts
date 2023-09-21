@@ -1,8 +1,14 @@
-import type { LayoutServerLoad } from "./$types"
+import { env } from '$env/dynamic/private'
 
-// src/routes/+layout.server.ts
-export const load: LayoutServerLoad = async ({ locals: { getSession } }) => {
+export async function load({ locals, cookies }) {
+    const session = await locals.getSession()
+
+    const theme = cookies.get("sukit_theme") || "light"
+
     return {
-        session: await getSession(),
+        theme,
+        session,
+        supabaseUrl: env.SUPABASE_URL,
+        supabaseKey: env.SUPABASE_ANON_KEY,
     }
 }

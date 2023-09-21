@@ -1,6 +1,8 @@
-import type { PageServerLoad } from "./$types";
-
-export const load: PageServerLoad = async ({ locals }) => {
+export async function load({ locals }) {
     const session = await locals.getSession()
-    return { session }
-};
+    return {
+        title: "Account",
+        summary: "Manage your account here.",
+        session,
+    }
+}

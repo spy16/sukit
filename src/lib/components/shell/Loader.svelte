@@ -1,16 +1,31 @@
 <script lang="ts">
 	import { navigating } from '$app/stores';
+	import { derived } from 'svelte/store';
 
 	export let visible = true;
 
-	$: animate = visible && $navigating;
+	let timer: NodeJS.Timeout | null = null;
+	const navigationIsDelayed = derived(navigating, (newValue, set) => {
+		if (timer) {
+			clearTimeout(timer);
+		}
+		if (newValue) {
+			timer = setTimeout(() => set(true), 500);
+		}
+		set(false);
+	});
+
+	$: animate = visible && $navigationIsDelayed;
 </script>
 
-<div class={'sticky top-0 z-50 w-full h-[4px] bg-white ' + (animate ? 'animated-gradient' : '')} />
+<div
+	class={'sticky top-0 z-50 w-full min-h-[4px] bg-transparent ' +
+		(animate ? 'animated-gradient' : '')}
+/>
 
 <style>
 	.animated-gradient {
-		background: repeating-linear-gradient(to right, blue 0%, #e80b0b 50%, rgb(4, 145, 103) 100%);
+		background: repeating-linear-gradient(to right, black 0%, white 50%, white 100%);
 		width: 100%;
 		background-size: 200% auto;
 		background-position: 0 100%;

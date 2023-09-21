@@ -1,5 +1,6 @@
-import type { PageServerLoad } from "./$types";
-
-export const load: PageServerLoad = async ({ request }) => {
-    return {}
-};
+export async function load() {
+    return {
+        title: "Dashboard",
+        summary: "You can see overview of your usage here."
+    }
+}

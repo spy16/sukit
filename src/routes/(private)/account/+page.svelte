@@ -1,13 +1,11 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
-	export let data: PageData;
-
-	$: user = data.session?.user;
+	export let data;
+	$: ({ user } = data);
 </script>
 
-<h1>Account</h1>
-
-<p>
-	Logged in as {user?.email}
-</p>
+<div>
+	<h1>Account</h1>
+	<p>
+		Logged in as {user.email}
+	</p>
+</div>

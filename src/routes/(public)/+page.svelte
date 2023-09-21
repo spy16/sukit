@@ -1,13 +1,8 @@
 <script>
-	import Features from '$lib/components/site/Features.svelte';
 	import Hero from '$lib/components/site/Hero.svelte';
+	import Features from '$lib/components/site/Features.svelte';
 	import Pricing from '$lib/components/site/Pricing.svelte';
 </script>
-
-<svelte:head>
-	<title>SuKit</title>
-	<meta name="description" content="A Supabase + SvelteKit stack template." />
-</svelte:head>
 
 <div class="flex flex-col">
 	<section id="hero">
